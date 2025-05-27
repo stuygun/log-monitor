@@ -3,11 +3,13 @@ package com.lseg.monitoring.logmonitor.service;
 import com.lseg.monitoring.logmonitor.model.Job;
 import com.lseg.monitoring.logmonitor.model.Level;
 import com.lseg.monitoring.logmonitor.model.ReportEntry;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ReportEntryGenerator {
     private static final Duration WARNING_THRESHOLD = Duration.ofMinutes(5);
     private static final Duration ERROR_THRESHOLD = Duration.ofMinutes(10);
