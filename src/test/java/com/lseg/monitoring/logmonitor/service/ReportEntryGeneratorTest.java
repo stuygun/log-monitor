@@ -1,5 +1,6 @@
 package com.lseg.monitoring.logmonitor.service;
 
+import com.lseg.monitoring.logmonitor.ideas.rules.core.RuleEngine;
 import com.lseg.monitoring.logmonitor.model.Job;
 import com.lseg.monitoring.logmonitor.model.Level;
 import com.lseg.monitoring.logmonitor.model.ReportEntry;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = ReportEntryGenerator.class)
+@SpringBootTest(classes = {ReportEntryGenerator.class, RuleEngine.class})
 public class ReportEntryGeneratorTest {
     @Autowired
     private ReportEntryGenerator reportEntryGenerator;
