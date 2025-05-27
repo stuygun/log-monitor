@@ -24,6 +24,11 @@ public class LogParser {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",", 4);
 
+                if (parts.length < 4) { //at least skip the invalid line for now
+                    System.err.println("Invalid CSV line: " + line);
+                    continue;
+                }
+
                 LocalTime timestamp = LocalTime.parse(parts[0].trim());
                 String jobDescription = parts[1].trim();
                 String entryType = parts[2].trim();

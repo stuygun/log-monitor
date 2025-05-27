@@ -44,4 +44,18 @@ public class LogParserTest {
         assertEquals(LocalTime.parse("11:35:23"), job.startTime());
         assertEquals(LocalTime.parse("11:35:56"), job.endTime());
     }
+
+    @Test
+    public void parseJobs_shouldSkipMalformedLine() throws IOException {
+        File csv = tempDir.resolve("bad.csv").toFile();
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(csv))) {
+            bufferedWriter.write("invalid,line,here\n");
+            bufferedWriter.write("12:00:00,desc,START,1\n");
+            bufferedWriter.write("12:05:00,desc,END,1\n");
+        }
+
+        List<Job> jobs = parser.parseLogFile(csv.getAbsolutePath());
+
+        assertEquals(1, jobs.size(), "Should skip invalid line and parse one job");
+    }
 }
